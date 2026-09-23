@@ -12,6 +12,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ./employee-module
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -19,19 +23,13 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.24'
+          go-version-file: './employee-module/go.mod'
 
       - name: Download dependencies
         run: go mod download
 
-      - name: Run unit and integration tests
+      - name: Run tests
         run: go test -v ./...
 
-      - name: Calculate test coverage
+      - name: Run tests with coverage
         run: go test -cover ./...
-
-      - name: Generate coverage report
-        run: go test -coverprofile=coverage.out ./...
-
-      - name: Show coverage
-        run: go tool cover -func=coverage.out
