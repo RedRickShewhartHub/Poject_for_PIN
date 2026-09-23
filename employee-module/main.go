@@ -14,10 +14,10 @@ func main() {
 
 	fmt.Println("Принимаем сотрудников на работу:")
 
-	ivanov := employeeService.HireEmployee(1, "Иванов Иван Иванович", "+79001112233", "ivanov@company.ru", 1, 1)
+	ivanov := employeeService.HireEmployee(1, "Малышев Федор Николаевич", "+79001112233", "ivanov@company.ru", 1, 1)
 	fmt.Printf("- %s принят в отдел %d на должность %d\n", ivanov.FullName, ivanov.DepartmentID, ivanov.PositionID)
 
-	petrova := employeeService.HireEmployee(2, "Петрова Мария Сергеевна", "+79004445566", "petrova@company.ru", 1, 2)
+	petrova := employeeService.HireEmployee(2, "Марчук Есения Романовна", "+79004445566", "petrova@company.ru", 1, 2)
 	fmt.Printf("- %s принята в отдел %d на должность %d\n", petrova.FullName, petrova.DepartmentID, petrova.PositionID)
 
 	fmt.Println("\nПереводим сотрудника в другое подразделение:")
@@ -44,12 +44,12 @@ func main() {
 		}
 	}
 
-	fmt.Println("\nИстория изменений сотрудника Иванова:")
+	fmt.Println("\nИстория изменений сотрудника Малышева:")
 	for _, log := range employeeService.GetChangeHistory(1) {
 		fmt.Printf("  - [%s] %s -> %s\n", log.Action, log.OldValue, log.NewValue)
 	}
 
-	fmt.Println("\nИстория изменений сотрудницы Петровой:")
+	fmt.Println("\nИстория изменений сотрудницы Марчук:")
 	for _, log := range employeeService.GetChangeHistory(2) {
 		fmt.Printf("  - [%s] %s -> %s\n", log.Action, log.OldValue, log.NewValue)
 	}
